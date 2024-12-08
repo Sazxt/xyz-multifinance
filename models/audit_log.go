@@ -7,10 +7,10 @@ import (
 )
 
 type AuditLog struct {
-	ID        uint           `gorm:"primaryKey"`
-	UserID    uint           `gorm:"not null"`
-	Action    string         `gorm:"not null"`
-	Timestamp time.Time      `gorm:"autoCreateTime"`
+	ID        uint      `gorm:"primaryKey"`
+	UserID    uint      `gorm:"not null"`
+	Action    string    `gorm:"not null"`
+	Timestamp time.Time `gorm:"autoCreateTime"`
 	Details   string
 }
 
