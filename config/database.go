@@ -2,7 +2,7 @@ package config
 
 import (
 	"log"
-	// "os"
+	"os"
 	"time"
 
 	"gorm.io/driver/mysql"
@@ -12,7 +12,13 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	dsn := "root:123@tcp(127.0.0.1:3306)/xyz_multifinance?charset=utf8mb4&parseTime=True&loc=Local"
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	if dbHost == "" {
+		dbHost = "127.0.0.1"
+		dbPort = "3306"
+	}
+	dsn := "root:123@tcp(" + dbHost + ":" + dbPort + ")/xyz_multifinance?charset=utf8mb4&parseTime=True&loc=Local"
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)

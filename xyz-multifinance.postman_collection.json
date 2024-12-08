@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "8b5e0422-30ab-4a1e-8869-653bf5328aa3",
+		"name": "xyz-multifinance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21623496"
+	},
+	"item": [
+		{
+			"name": "get-users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"NIK\" : \"19301824123\",\r\n    \"FullName\" : \"testing\",\r\n    \"LegalName\" : \"test\",\r\n    \"BirthPlace\" : \"tanggerang\",\r\n    \"BirthDate\" : \"20-19-1931\",\r\n    \"Salary\" : 20000,\r\n    \"PhotoKTP\" : \"test\",\r\n    \"PhotoSelfie\" : \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserID\": 1,\r\n   \t\"ContractNo\": \"{{$randomFullName}}-{{$randomAlphaNumeric}}\",\r\n    \"otr\": 87000,\r\n    \"Installment\": 1,\r\n    \"AdminFee\": 5000,\r\n    \"Interest\": 2000,\r\n    \"AssetName\": \"Motor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/transactions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

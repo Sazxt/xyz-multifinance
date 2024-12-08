@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"xyz-multifinance/config"
-	"xyz-multifinance/controllers"
 	"xyz-multifinance/middleware"
 	"xyz-multifinance/models"
+	"xyz-multifinance/routes"
+	"xyz-multifinance/seeders"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,15 +18,19 @@ func main() {
 	models.MigrateUser(config.DB)
 	models.MigrateLoanLimit(config.DB)
 	models.MigrateTransaction(config.DB)
+	models.MigrateAuditLog(config.DB)
+
+	// Seed data
+	// seeders.SeedLoanLimits(config.DB)
+	seeders.SeedUsers(config.DB)
 
 	r := gin.Default()
 	r.Use(middleware.SecureHeaders())
 
 	// Routes
-	r.GET("/users", controllers.GetUsers)
-	r.POST("/users", controllers.CreateUser)
-	r.POST("/transactions", controllers.CreateTransaction)
+	routes.RegisterRoutes(r)
 
 	// Run server
+	fmt.Println("Server running on port 8080")
 	r.Run(":8080")
 }

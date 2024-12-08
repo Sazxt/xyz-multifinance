@@ -1,4 +1,4 @@
-FROM golang:1.20
+FROM golang:1.21.3
 
 WORKDIR /app
 
@@ -8,6 +8,9 @@ RUN go mod download
 COPY . .
 
 RUN go build -o main .
+
+CMD ["CompileDaemon", "--build=go build -o main .", "--command=./main"]
+
 
 EXPOSE 8080
 
